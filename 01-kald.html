@@ -14,23 +14,20 @@
         }
 */
         body {
-            background-color: #2f4454;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
         }
 
         img {
-            max-width: 100%;
+            width: 100%;
         }
 
-        h1 {
-            font-size: 50px;
-            padding-top: 40px;
-            color: white;
-            padding-left: 55px;
-        }
-
-        h2 {
-            color: #2f4454;
-            padding-left: 4px;
+        h1,
+        h2,
+        h3 {
+            text-transform: uppercase;
+            font-family: 'Arapey', serif;
+            /* font-family: 'Goldoni'; */
         }
 
         p {
@@ -39,16 +36,26 @@
         }
 
         article {
-            border: 5px solid white;
-            margin: 10px;
+            border: 1px solid darkgoldenrod;
+            margin: 30px;
             background-color: white;
-            border-style: outset;
-
+            height: 95%;
         }
 
         main {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            margin-top: 50px;
+        }
+
+        .main.liste {
+            display: grid;
+            width: 90%;
+            margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .valgt {
@@ -56,34 +63,191 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
+        #soeg {
+            display: block;
+            color: #FFF;
+            font-family: 'Arapey', serif;
+            text-transform: uppercase;
+            /* font-family: 'Goldoni'; */
+            position: absolute;
+            background-color: darkgoldenrod;
+            padding: 8px 10px;
+            top: 20px;
+            left:85%;
+            border: 0;
+            font-size: 12px;
+        }
+
         nav {
             display: flex;
             text-align: center;
         }
 
+        .nav_disktop {
+            text-align: center;
+            width: 100%;
+        }
+
         button {
-            width: 250px;
+            display: block;
+            width: 90vw;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px 0px;
+            width: 150px;
             background-color: white;
             border: none;
-            color: white;
-            padding: 14px 40px;
-            text-align: center;
             font-size: 16px;
-            margin: 4%;
             opacity: 0.6;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             transition-duration: 0.4s;
-            display: inline-block;
+            display: inline;
             text-decoration: none;
             cursor: pointer;
-            color: #2f4454;
+            color: darkgoldenrod;
 
         }
+/*
+        .mad_menu {
+    display: block;
+    width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 0px;
+}
+*/
 
         button:hover {
-            background-color: #2f4454;
+            background-color: darkgoldenrod;
             /* Green */
             color: white;
+        }
+
+        .header {
+            display: block;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+
+        .header_linjen1 {
+            display: block;
+            float: left;
+            padding: 20px;
+        }
+
+        .disktop_logo {
+            width: 30%;
+            margin: 0 30%;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .popup {
+            z-index: 5;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .8);
+            position: fixed;
+            visibility: hidden;
+        }
+
+        .popup_content {
+            width: 63vw;
+            /* height: 83.5vh; */
+            height: auto;
+            background-color: #FFF;
+            color: #000;
+            position: absolute;
+            top: 40px;
+            left: 17vw;
+            padding: 1vw;
+        }
+
+        #menuToggle {
+            display: block;
+            position: relative;
+            top: 20px;
+            left: 15px;
+            z-index: 1;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+
+        #menu_disktop,
+        ul,
+        li {
+            font-family: 'Arapey', serif;
+            text-transform: uppercase;
+            padding-left: 60px;
+            display: inline;
+
+            font-size: 20px;
+        }
+
+        #menu_disktop,
+        a {
+            color: black;
+            text-decoration: none;
+            padding-left: 120px;
+        }
+
+        #velkommen {
+            padding: 70px 0px;
+            background-image: url(bistro.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            */: ;
+            height: 320px !important;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .velkommen_kasse {
+            margin: 0 auto;
+            width: 80%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px 0px;
+            box-shadow: 0px 0px 15px 0px rgb(56 56 56);
+        }
+
+
+        .velkommen_img {
+            display: none;
+        }
+
+        #velkommen h1,
+        #velkommen h2 {
+            padding: 20px 10px;
+            margin: 10px 0px;
+        }
+
+        .velkommen_p {
+            margin: 0 auto;
+            width: 60vw;
+            text-align: center;
+        }
+        #kontakt{
+            grid-template-columns: repeat(2, 1fr);
+            display: grid;
+            margin-top: 10%;
+        }
+        .adresse, aside {
+            margin: 0px 10px;
+            padding: 10px;
+            border: solid 1px darkgoldenrod
+        }
+
+
+        footer{
+            margin: 20px;
+            display: block;
         }
 
 
@@ -93,15 +257,76 @@
 </head>
 
 <body>
-    <h1>Alle</h1>
-    <nav>
-        <button data-troende="alle" class="valgt">Alle</button>
-        <button data-troende="ja">Troende</button>
-        <button data-troende="nej">Ikke troende</button>
-        <button data-troende="tvivler">Tvivler</button>
+    <div class="popup">
+        <div class="popup_content">
+            <img src="" class="tilbage">
+            <img src="" alt="" class="single_img" data-popupimg="">
+            <div class="popup_text">
+                <h2 class="single_title" data-popupnavn=""></h2>
+                <p data-popuplangbeskrivelse=""></p>
+            </div>
+        </div>
+    </div>
+    <header>
+        <nav role="navigation" class="nav_mobile">
+            <div id="menuToggle">
+                <input class="brugermenu" type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="header_linjen1">
+            <a href="#menuen" id="soeg">BESTIL ONLINE</a>
+        </div>
 
-    </nav>
-    <main class="liste"></main>
+        <img class="disktop_logo" src="Logo.png" alt="Bistro Babushka logo disktop">
+
+        <nav role="navigation" class="nav_disktop">
+            <ul id="menu_disktop">
+                <li class="responsive_menu"><a href="#velkommen">Velkommen</a></li>
+                <li class="responsive_menu"><a href="#menuen">Menu</a></li>
+                <li class="responsive_menu"><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div id="velkommen">
+        <div class="velkommen_kasse">
+            <img class="velkommen_img" src="bistro.jpg" alt="Russisk ret">
+            <h1>Velkommen</h1>
+            <p class="velkommen_p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dolore ut saepe, aut, perspiciatis voluptatibus dolor, optio quos provident similique magnam nulla possimus! Soluta hic laboriosam iure libero harum molestiae! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima neque aliquid impedit in cupiditate quasi deleniti quos vel facere voluptatibus, earum eveniet dolor beatae ipsa veritatis dolores autem. Molestias, itaque.</p>
+        </div>
+    </div>
+    <div id="menuen">
+
+        <dropdown>
+<!--
+            <input id="toggle2" type="checkbox">
+            <label for="toggle2" class="animate">⇩ Sorter efter<i class="fa fa-bars float-right"></i></label>
+-->
+<!--
+            <ul class="animate">
+                <button class="animate" id="filter_alle_mobil">Alle</button>
+                <button class="animate" id="filter_forretter_mobil">Forretter</button>
+                <button class="animate" id="filter_hovedretter_mobil">Hovedretter</button>
+                <button class="animate" id="filter_desserter_mobil">Desserter</button>
+                <button class="animate" id="filter_sideorders_mobil">Side Orders</button>
+                <button class="animate" id="filter_drikkevarer_mobil">Drikkevare</button>
+            </ul>
+-->
+        </dropdown>
+        <nav class="button">
+            <button id="filter_alle">Alle</button>
+            <button id="filter_forretter">Forretter</button>
+            <button id="filter_hovedretter">Hovedretter</button>
+            <button id="filter_desserter">Desserter</button>
+            <button id="filter_sideorders">Side Orders</button>
+            <button id="filter_drikkevarer">Drikkevare</button>
+        </nav>
+
+       <main class="liste"></main>
     <template>
         <article class="person">
             <img src="" alt="" class="billede">
@@ -109,6 +334,21 @@
             <p class="efternavn"></p>
         </article>
     </template>
+
+    </div>
+
+    <footer>
+        <div id="kontakt">
+            <div class="adresse">
+                <span class="kontakt_titel"> Kontakt:</span>
+                <p>Vestre Teglgade 4<br>2450 København 2v.<br>Tlf: +45 28 68 88 69</p>
+            </div>
+            <div class="adresse"><span class="kontakt_titel"> Åbningstider:</span>
+                <p>Mandag - Fredag: 10.30 til 22.00<br>Lørdag: 12.00 til 23.00<br>Søndag: Lukket</p>
+            </div>
+        </div>
+    </footer>
+    <!------------------------------------------    ------------------------------------------------>
 
     <script>
         const header = document.querySelector("h1");

@@ -264,6 +264,27 @@
         @media screen and (min-width:768px) {}
 
         @media(max-width: 600px) {
+            #menuToggle {
+                display: block;
+                position: relative;
+                top: 20px;
+                left: 15px;
+                z-index: 1;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+            #menuToggle input {
+                display: block;
+                width: 40px;
+                height: 32px;
+                position: absolute;
+                top: -7px;
+                left: -5px;
+                cursor: pointer;
+                opacity: 0;
+                z-index: 2;
+            }
 
             .logo {
                 display: block;
@@ -274,14 +295,6 @@
                 margin-left: auto;
                 text-align: center;
             }
-
-            .nav_disktop {
-                display: inline;
-                text-align: center;
-                width: 80%;
-            }
-
-
         }
     </style>
 </head>
@@ -290,11 +303,17 @@
 
 
     <header>
-
+        <nav role="navigation" class="nav_mobile">
+            <div id="menuToggle">
+                <input class="brugermenu" type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
         <div class="header_top">
             <a href="#menuen" id="bestil">BESTIL ONLINE</a>
         </div>
-
 
         <img class="logo" src="Logo_M.png" alt="Bistro Babushka logo disktop">
 
@@ -315,30 +334,15 @@
             <p class="velkommen_p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dolore ut saepe, aut, perspiciatis voluptatibus dolor, optio quos provident similique magnam nulla possimus! Soluta hic laboriosam iure libero harum molestiae!</p>
         </div>
     </div>
-
     <div id="menuen">
-        <!--
         <nav class="button">
-            <button id="filter_alle" class="valgt">Alle</button>
-            <button id="filter_forretter">Forretter</button>
-            <button id="filter_hovedretter">Hovedretter</button>
-            <button id="filter_desserter">Desserter</button>
-            <button id="filter_sideorders">Side Orders</button>
-            <button id="filter_drikkevarer">Drikkevare</button>
+            <button data-menu="alle" class="valgt">Alle</button>
+            <button data-menu="forretter">Forretter</button>
+            <button data-menu="hovedretter">Hovedretter</button>
+            <button data-menu="desserter">Desserter</button>
+            <button data-menu="sideorders">Side Orders</button>
+            <button data-menu="drikkevarer">Drikkevare</button>
         </nav>
-
-
--->
-        <nav>
-            <button data-troende="alle" class="valgt">Alle</button>
-            <button data-troende="kategori">Foretter</button>
-            <button data-troende="kategori">Hovederetter</button>
-            <button data-troende="kategori">Desserter</button>
-            <button data-troende="kategori">Side Order</button>
-            <button data-troende="kategori">Drikkevarer</button>
-
-        </nav>
-
 
 
         <main class="liste"></main>
@@ -346,12 +350,9 @@
             <article class="person">
                 <img src="" alt="" class="billede">
                 <h2 class="navn"></h2>
-                <p class="id"></p>
-                <p class="kategori"></p>
                 <p class="kortbeskrivelse"></p>
-                <p class="langbeskrivelse"></p>
-                <p class="oprindelsesregion"></p>
                 <p class="pris"></p>
+                <p class="kategori"></p>
                 <p class="_id"></p>
             </article>
         </template>
@@ -395,7 +396,7 @@
         // eventlistner knyttet til knappen der vælger hvilken filter der er aktiv
         function filtrerPersoner() {
             // sæt variabel "filter" til værdien af data-troende på den knap der er klikket på
-            filter = this.dataset.troende;
+            filter = this.dataset.menu;
             document.querySelector(".valgt").classList.remove("valgt");
             this.classList.add("valgt");
             header.textContent = this.textContent;
@@ -406,24 +407,24 @@
         async function loadJSON() {
             const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
                 headers: myHeaders
-
             });
             personer = await JSONData.json();
             console.log("Personer", personer);
             visPersoner();
         }
-        console.log("loadJSON");
+
 
         // funktion der viser personer i liste view
         function visPersoner() {
+
             const dest = document.querySelector(".liste"); // container til articles med personer
             const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
             dest.textContent = ""; // ryd container inden ny loop
             personer.forEach(person => {
-                console.log("Troende", person.troende);
+                console.log("Troende", person.kategori);
                 // loop igennem json (personer)
                 // tjek hvilken tro personen har og sammenlign med aktuelt eller vis alle, hvis filter har værdien "alle"
-                if (filter == person.troende || filter == "alle") {
+                if (filter == person.kategori || filter == "alle") {
                     const klon = skabelon.cloneNode(true);
                     //                    klon.querySelector(".navn").textContent = person.fornavn;
                     klon.querySelector(".navn").textContent = person.navn;
@@ -441,56 +442,5 @@
         function visDetaljer(hvem) {
             location.href = `02-detalje.html?id=${hvem._id}`;
         }
-        //
-        //        function lavFiltre() {
-        //            //Find events der indeholder de valgte kategorier
-        //            let forretter = retter.filter(ret => ret.kategori == "forretter");
-        //            let hovedretter = retter.filter(ret => ret.kategori == "hovedretter");
-        //            let desserter = retter.filter(ret => ret.kategori == "desserter");
-        //            let sideorders = retter.filter(ret => ret.kategori == "sideorders");
-        //            let drikkevarer = retter.filter(ret => ret.kategori == "drikkevarer");
-        //
-        //            //DISKTOP
-        //            //Kald visretter med de nye arrays - Soter retter efter kategori
-        //            document.querySelector('#filter_alle').addEventListener("click", () => {
-        //                visRetter(retter, "Alle retter");
-        //            });
-        //            document.querySelector('#filter_forretter').addEventListener("click", () => {
-        //                visRetter(forretter, "Forretter");
-        //            });
-        //            document.querySelector('#filter_hovedretter').addEventListener("click", () => {
-        //                visRetter(hovedretter, "Hovedretter");
-        //            });
-        //            document.querySelector('#filter_desserter').addEventListener("click", () => {
-        //                visRetter(desserter, "Desserter ");
-        //            });
-        //            document.querySelector('#filter_sideorders').addEventListener("click", () => {
-        //                visRetter(sideorders, "sideorders");
-        //            });
-        //            document.querySelector('#filter_drikkevarer').addEventListener("click", () => {
-        //                visRetter(drikkevarer, "Drikkevarer");
-        //            });
-        //
-        //            //MOBIL
-        //            //Kald visretter med de nye arrays - Soter retter efter kategori
-        //            document.querySelector('#filter_alle_mobil').addEventListener("click", () => {
-        //                visRetter(retter, "Menu");
-        //            });
-        //            document.querySelector('#filter_forretter_mobil').addEventListener("click", () => {
-        //                visRetter(forretter, "Forretter");
-        //            });
-        //            document.querySelector('#filter_hovedretter_mobil').addEventListener("click", () => {
-        //                visRetter(hovedretter, "Hovedretter");
-        //            });
-        //            document.querySelector('#filter_desserter_mobil').addEventListener("click", () => {
-        //                visRetter(desserter, "Desserter");
-        //            });
-        //            document.querySelector('#filter_sideorders_mobil').addEventListener("click", () => {
-        //                visRetter(sideorders, "sideorders");
-        //            });
-        //            document.querySelector('#filter_drikkevarer_mobil').addEventListener("click", () => {
-        //                visRetter(drikkevarer, "Drikkevarer");
-        //            });
-        //        }
     </script>
 </body></html>

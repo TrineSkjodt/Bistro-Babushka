@@ -12,10 +12,12 @@
     <nav>
         <button data-troende="tvivler">Tilbage</button>
     </nav>
-    <article>
-        <img src="" alt="" class="billede">
+    <article class="person">
         <h2 class="navn"></h2>
-        <p class="efternavn"></p>
+        <img src="" alt="" class="billede">
+        <p class="kortbeskrivelse"></p>
+        <p class="langbeskrivelse"></p>
+        <p class="pris"></p>
     </article>
 
     <script>
@@ -31,7 +33,7 @@
         document.addEventListener("DOMContentLoaded", loadJSON);
 
         async function loadJSON() {
-            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${"600ec071ef2e8a1b00024613"}`, {
+            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${id}`, {
                 headers: myHeaders
             });
             person = await JSONData.json();
@@ -41,7 +43,10 @@
         }
 
         function visPerson() {
-            document.querySelector(".navn").textContent = person.fornavn + " " + person.efternavn;
+            document.querySelector(".navn").textContent = person.fornavn;
+            document.querySelector(".kortbeskrivelse").textContent = person.kortbeskrivelse;
+            document.querySelector(".langbeskrivelse").textContent = person.langbeskrivelse;
+            document.querySelector(".pris").textContent = person.pris;
             document.querySelector(".billede").src = medieurl + person.billede;
             document.querySelector(".billede").alt = medieurl + person.billede;
             document.querySelector("button").addEventListener("click", tilbageTilPersonGalleri);

@@ -4,54 +4,92 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+
     <title>Kald</title>
     <link rel="stylesheet" href="">
 
     <style>
-        /*
-        * {
-            box-sizing: border-box;
-        }
-*/
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
         }
 
-        img {
+        img.billede {
             width: 100%;
+            height: 60%;
+            transition: all 0.5s;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+
+        img.billede:hover {
+            z-index: 1;
+            transform: scale(1.1);
+            opacity: 0.3;
+            filter: alpha(opacity=100);
+        }
+
+        h2.navn {
+            font-family: 'Slabo 27px', serif;
+            font-size: 22px;
+            margin: 10px 0px 10px 0px;
+            display: block;
+            padding-left: 6px;
+        }
+
+        p.kortbeskrivelse {
+            font-family: 'Arapey', serif;
+            font-size: 16px;
+            margin: 10px 0px 10px 0px;
+            display: block;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        p.pris {
+            font-family: 'Slabo 27px', serif;
+            font-size: 32px;
+            color: #2f4454;
+            position: relative;
+            padding-left: 10px;
+
         }
 
         h1,
-        h2,
-        h3 {
-            text-transform: uppercase;
+        h2 {
             font-family: 'Arapey', serif;
-            /* font-family: 'Goldoni'; */
+
         }
 
-        p {
-            color: #2f4454;
-            padding-left: 4px;
-        }
 
         article {
-            border: 1px solid darkgoldenrod;
             margin: 30px;
             background-color: white;
-            height: 95%;
+            height: 85%;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
         }
+
 
         main {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            margin-top: 50px;
+            margin: 50px 10pc 10pc 100px;
         }
 
         .main.liste {
             display: grid;
             width: 90%;
-            margin: 0 auto;
+            margin: 0 0;
             grid-template-columns: repeat(4, 1fr);
             cursor: pointer;
             position: relative;
@@ -59,21 +97,21 @@
         }
 
         .valgt {
-            color: red;
+            color: #2f4454;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
-        #soeg {
+        #bestil {
             display: block;
             color: #FFF;
             font-family: 'Arapey', serif;
             text-transform: uppercase;
-            /* font-family: 'Goldoni'; */
+            font-family: 'Goldoni';
             position: absolute;
             background-color: darkgoldenrod;
             padding: 8px 10px;
             top: 20px;
-            left:85%;
+            left: 85%;
             border: 0;
             font-size: 12px;
         }
@@ -88,16 +126,28 @@
             width: 100%;
         }
 
-        button {
+        nav.button {
+            display: block;
             display: block;
             width: 90vw;
             margin: 0 auto;
             text-align: center;
-            padding: 20px 0px;
+            padding: 30px 0px;
+        }
+
+        button {
+            display: block;
+            width: 15%;
+            padding: 10px 20px;
+            margin: 5px 3px;
+            border: 0;
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
             width: 150px;
             background-color: white;
             border: none;
-            font-size: 16px;
             opacity: 0.6;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             transition-duration: 0.4s;
@@ -107,21 +157,13 @@
             color: darkgoldenrod;
 
         }
-/*
-        .mad_menu {
-    display: block;
-    width: 90vw;
-    margin: 0 auto;
-    text-align: center;
-    padding: 30px 0px;
-}
-*/
 
         button:hover {
             background-color: darkgoldenrod;
-            /* Green */
+            /*             Green*/
             color: white;
         }
+
 
         .header {
             display: block;
@@ -129,39 +171,19 @@
             margin-bottom: 10px;
         }
 
-        .header_linjen1 {
+        .header_top {
             display: block;
             float: left;
             padding: 20px;
         }
 
-        .disktop_logo {
+        .logo {
+            display: block;
             width: 50%;
-            margin: 0 20%;
-            display: block;
+            margin: 20%;
             margin-bottom: 15px;
-        }
-
-        .popup {
-            z-index: 5;
-            display: block;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, .8);
-            position: fixed;
-            visibility: hidden;
-        }
-
-        .popup_content {
-            width: 63vw;
-            /* height: 83.5vh; */
-            height: auto;
-            background-color: #FFF;
-            color: #000;
-            position: absolute;
-            top: 40px;
-            left: 17vw;
-            padding: 1vw;
+            margin-top: 15px;
+            text-align: center;
         }
 
         #menuToggle {
@@ -174,13 +196,25 @@
             user-select: none;
         }
 
+        #menuToggle input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 2;
+        }
 
         #menu_disktop,
         ul,
         li {
+            margin: 10px 26px;
             font-family: 'Arapey', serif;
             text-transform: uppercase;
-            padding-left: 60px;
+            padding-left: 10px;
             display: inline;
 
             font-size: 20px;
@@ -222,51 +256,42 @@
             display: none;
         }
 
-        #velkommen h1,
-        #velkommen h2 {
-            padding: 20px 10px;
-            margin: 10px 0px;
-        }
-
         .velkommen_p {
             margin: 0 auto;
             width: 30vw;
             text-align: center;
         }
-        #kontakt{
+
+        #kontakt {
             grid-template-columns: repeat(2, 1fr);
             display: grid;
             margin-top: 10%;
         }
-        .adresse, aside {
+
+        .adresse,
+        aside {
             margin: 0px 10px;
             padding: 10px;
             border: solid 1px darkgoldenrod
         }
 
 
-        footer{
+        footer {
             margin: 20px;
             display: block;
         }
 
-
         @media screen and (min-width:768px) {}
+
+        @media(max-width: 600px) {}
+        }
 
     </style>
 </head>
 
 <body>
-    <div class="popup">
-        <div class="popup_content">
-            <img src="" class="tilbage">
-            <img src="" alt="" class="single_img" data-popupimg="">
-            <div class="popup_text">
-                <h2 class="single_title" data-popupnavn=""></h2>
-                <p data-popuplangbeskrivelse=""></p>
-            </div>
-        </div>
-    </div>
+
+
     <header>
         <nav role="navigation" class="nav_mobile">
             <div id="menuToggle">
@@ -276,11 +301,11 @@
                 <span></span>
             </div>
         </nav>
-        <div class="header_linjen1">
-            <a href="#menuen" id="soeg">BESTIL ONLINE</a>
+        <div class="header_top">
+            <a href="#menuen" id="bestil">BESTIL ONLINE</a>
         </div>
 
-        <img class="disktop_logo" src="Logo_U.png" alt="Bistro Babushka logo disktop">
+        <img class="logo" src="Logo_M.png" alt="Bistro Babushka logo disktop">
 
         <nav role="navigation" class="nav_disktop">
             <ul id="menu_disktop">
@@ -300,25 +325,8 @@
         </div>
     </div>
     <div id="menuen">
-
-        <dropdown>
-<!--
-            <input id="toggle2" type="checkbox">
-            <label for="toggle2" class="animate">⇩ Sorter efter<i class="fa fa-bars float-right"></i></label>
--->
-<!--
-            <ul class="animate">
-                <button class="animate" id="filter_alle_mobil">Alle</button>
-                <button class="animate" id="filter_forretter_mobil">Forretter</button>
-                <button class="animate" id="filter_hovedretter_mobil">Hovedretter</button>
-                <button class="animate" id="filter_desserter_mobil">Desserter</button>
-                <button class="animate" id="filter_sideorders_mobil">Side Orders</button>
-                <button class="animate" id="filter_drikkevarer_mobil">Drikkevare</button>
-            </ul>
--->
-        </dropdown>
         <nav class="button">
-            <button id="filter_alle">Alle</button>
+            <button id="filter_alle" class="valgt">Alle</button>
             <button id="filter_forretter">Forretter</button>
             <button id="filter_hovedretter">Hovedretter</button>
             <button id="filter_desserter">Desserter</button>
@@ -326,29 +334,47 @@
             <button id="filter_drikkevarer">Drikkevare</button>
         </nav>
 
-       <main class="liste"></main>
-    <template>
-        <article class="person">
-            <img src="" alt="" class="billede">
-            <h2 class="navn"></h2>
-            <p class="efternavn"></p>
-        </article>
-    </template>
+        <!--
+        <nav>
+            <button data-troende="alle" class="valgt">Alle</button>
+            <button data-troende="kategori">Foretter</button>
+            <button data-troende="kategori">Hovederetter</button>
+            <button data-troende="kategori">Desserter</button>
+            <button data-troende="kategori">Side Order</button>
+            <button data-troende="kategori">Drikkevarer</button>
+
+        </nav>
+-->
+
+
+        <main class="liste"></main>
+        <template>
+            <article class="person">
+                <img src="" alt="" class="billede">
+                <h2 class="navn"></h2>
+                <p class="kortbeskrivelse"></p>
+                <p class="pris"></p>
+            </article>
+        </template>
 
     </div>
 
     <footer>
         <div id="kontakt">
             <div class="adresse">
-                <span class="kontakt_titel"> Kontakt:</span>
+                <h2 class="kontakt_titel"> Kontakt:</h2>
                 <p>Vestre Teglgade 4<br>2450 København 2v.<br>Tlf: +45 28 68 88 69</p>
             </div>
-            <div class="adresse"><span class="kontakt_titel"> Åbningstider:</span>
-                <p>Mandag - Fredag: 10.30 til 22.00<br>Lørdag: 12.00 til 23.00<br>Søndag: Lukket</p>
+            <div class="adresse">
+                <h2 class="kontakt_titel"> Åbningstider:</h2>
+                <p>Mandag - Fredag: 10.30 til 22.00<br>Lørdag: 12.00 til 23.00<br>Søndag: 12.00 til 22.00</p>
             </div>
         </div>
     </footer>
+
+
     <!------------------------------------------    ------------------------------------------------>
+
 
     <script>
         const header = document.querySelector("h1");
@@ -363,11 +389,11 @@
         // første funktion der kaldes efter DOM er loaded
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
-            filterKnapper.forEach(knap => knap.addEventListener("click", filterPersoner))
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerPersoner))
             loadJSON();
         }
         // eventlistner knyttet til knappen der vælger hvilken filter der er aktiv
-        function filterPersoner() {
+        function filtrerPersoner() {
             // sæt variabel "filter" til værdien af data-troende på den knap der er klikket på
             filter = this.dataset.troende;
             document.querySelector(".valgt").classList.remove("valgt");
@@ -385,9 +411,10 @@
             console.log("Personer", personer);
             visPersoner();
         }
+
+
         // funktion der viser personer i liste view
         function visPersoner() {
-            console.log("visPersoner", personer);
             const dest = document.querySelector(".liste"); // container til articles med personer
             const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
             dest.textContent = ""; // ryd container inden ny loop
@@ -397,7 +424,11 @@
                 // tjek hvilken tro personen har og sammenlign med aktuelt eller vis alle, hvis filter har værdien "alle"
                 if (filter == person.troende || filter == "alle") {
                     const klon = skabelon.cloneNode(true);
-                    klon.querySelector(".navn").textContent = person.fornavn + " " + person.efternavn;
+                    //                    klon.querySelector(".navn").textContent = person.fornavn;
+                    klon.querySelector(".navn").textContent = person.navn;
+                    klon.querySelector(".kortbeskrivelse").textContent = person.kortbeskrivelse;
+
+                    klon.querySelector(".pris").textContent = person.pris;
                     klon.querySelector(".billede").src = medieurl + person.billede;
                     klon.querySelector(".billede").alt = medieurl + person.billede;
                     klon.querySelector(".person").addEventListener("click", () => visDetaljer(person));
@@ -407,7 +438,58 @@
         }
 
         function visDetaljer(hvem) {
-            location.href = "02-detalje.html?id=600ec071ef2e8a1b00024613";
+            location.href = `02-detalje.html?id=${hvem._id}`;
+        }
+
+        function lavFiltre() {
+            //Find events der indeholder de valgte kategorier
+            let forretter = retter.filter(ret => ret.kategori == "forretter");
+            let hovedretter = retter.filter(ret => ret.kategori == "hovedretter");
+            let desserter = retter.filter(ret => ret.kategori == "desserter");
+            let sideorders = retter.filter(ret => ret.kategori == "sideorders");
+            let drikkevarer = retter.filter(ret => ret.kategori == "drikkevarer");
+
+            //DISKTOP
+            //Kald visretter med de nye arrays - Soter retter efter kategori
+            document.querySelector('#filter_alle').addEventListener("click", () => {
+                visRetter(retter, "Alle retter");
+            });
+            document.querySelector('#filter_forretter').addEventListener("click", () => {
+                visRetter(forretter, "Forretter");
+            });
+            document.querySelector('#filter_hovedretter').addEventListener("click", () => {
+                visRetter(hovedretter, "Hovedretter");
+            });
+            document.querySelector('#filter_desserter').addEventListener("click", () => {
+                visRetter(desserter, "Desserter ");
+            });
+            document.querySelector('#filter_sideorders').addEventListener("click", () => {
+                visRetter(sideorders, "sideorders");
+            });
+            document.querySelector('#filter_drikkevarer').addEventListener("click", () => {
+                visRetter(drikkevarer, "Drikkevarer");
+            });
+
+            //MOBIL
+            //Kald visretter med de nye arrays - Soter retter efter kategori
+            document.querySelector('#filter_alle_mobil').addEventListener("click", () => {
+                visRetter(retter, "Menu");
+            });
+            document.querySelector('#filter_forretter_mobil').addEventListener("click", () => {
+                visRetter(forretter, "Forretter");
+            });
+            document.querySelector('#filter_hovedretter_mobil').addEventListener("click", () => {
+                visRetter(hovedretter, "Hovedretter");
+            });
+            document.querySelector('#filter_desserter_mobil').addEventListener("click", () => {
+                visRetter(desserter, "Desserter");
+            });
+            document.querySelector('#filter_sideorders_mobil').addEventListener("click", () => {
+                visRetter(sideorders, "sideorders");
+            });
+            document.querySelector('#filter_drikkevarer_mobil').addEventListener("click", () => {
+                visRetter(drikkevarer, "Drikkevarer");
+            });
         }
 
     </script>

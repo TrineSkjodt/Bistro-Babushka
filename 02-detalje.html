@@ -4,14 +4,135 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+
     <title>Detaljer</title>
     <link rel="stylesheet" href="">
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #ececec;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 1rem 1rem;
+        }
+
+        button {
+            display: block;
+            width: 15%;
+            padding: 10px 20px;
+            margin: 5px 3px;
+            border: 0;
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            width: 150px;
+            background-color: white;
+            border: none;
+            opacity: 0.6;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 0.4s;
+            display: inline;
+            text-decoration: none;
+            cursor: pointer;
+            color: darkgoldenrod;
+
+        }
+
+        button:hover {
+            background-color: darkgoldenrod;
+            /*             Green*/
+            color: white;
+        }
+
+        .billede {
+            width: 100%;
+            height: 60%;
+            transition: all 0.5s;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .billede:hover {
+            z-index: 1;
+            transform: scale(1.1);
+            opacity: 0.3;
+            filter: alpha(opacity=100);
+        }
+
+        h2.navn {
+            font-family: 'Arapey', serif;
+            font-size: 30px;
+            color: #2f4454;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        p.kortbeskrivelse,
+        p.langbeskrivelse {
+            font-family: 'Slabo 27px', serif;
+            font-size: 16px;
+            color: #2f4454;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        p.pris {
+            font-family: 'Slabo 27px', serif;
+            font-size: 45px;
+            color: #2f4454;
+            position: relative;
+            left: 85%;
+        }
+
+        article {
+            display: block;
+            margin: 30px;
+            background-color: white;
+            width: 50%;
+            height: 85%;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+    </style>
+
+
 </head>
 
 <body>
     <nav>
-        <button data-troende="tvivler">Tilbage</button>
+        <button>Tilbage</button>
     </nav>
+
+
+    <article class="person">
+
+        <img src="" alt="" class="billede">
+        <h2 class="navn"></h2>
+        <p class="kortbeskrivelse"></p>
+        <p class="langbeskrivelse"></p>
+        <p class="pris"></p>
+        <p class="_id"></p>
+    </article>
+
+
+    <!--
     <article class="person">
         <h2 class="navn"></h2>
         <img src="" alt="" class="billede">
@@ -19,6 +140,7 @@
         <p class="langbeskrivelse"></p>
         <p class="pris"></p>
     </article>
+-->
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -43,12 +165,17 @@
         }
 
         function visPerson() {
-            document.querySelector(".navn").textContent = person.fornavn;
+
+            document.querySelector(".billede").src = medieurl + person.billede;
+            document.querySelector(".billede").alt = medieurl + person.billede;
+
+            document.querySelector(".navn").textContent = person.navn;
             document.querySelector(".kortbeskrivelse").textContent = person.kortbeskrivelse;
             document.querySelector(".langbeskrivelse").textContent = person.langbeskrivelse;
             document.querySelector(".pris").textContent = person.pris;
-            document.querySelector(".billede").src = medieurl + person.billede;
-            document.querySelector(".billede").alt = medieurl + person.billede;
+
+            document.querySelector("._id").textContent = person.id;
+
             document.querySelector("button").addEventListener("click", tilbageTilPersonGalleri);
         }
 
